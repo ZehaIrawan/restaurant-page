@@ -1,79 +1,54 @@
-// import myName from './myName';
-// import ourStory from './ourStory';
+import homeContent from './home';
+import menuContent from './menu';
+import contactContent from './contact';
+import pageLoad from './pageLoad';
 
-// function component() {
-//   var element = document.createElement('div');
+function tab() {
+  let content = document.getElementById('content');
 
-//   // use your function!
-//   element.innerHTML = myName('Cody');
+  let navbar = document.createElement('div');
+  navbar.setAttribute('id', 'navbar');
 
-//   return element;
-// }
+  let homeNav = document.createElement('div');
+  homeNav.innerHTML = 'Home';
+  navbar.setAttribute('id', 'home');
 
-// document.getElementById('content').appendChild(component());
+  let menuNav = document.createElement('div');
+  menuNav.innerHTML = 'Menu';
+  navbar.setAttribute('id', 'menu');
 
-function tabs() {
-  const tabSwitch = document.createElement('div');
-  tabSwitch.setAttribute('id', 'header');
+  let contactNav = document.createElement('div');
+  contactNav.innerHTML = 'Contact';
+  navbar.setAttribute('id', 'contact');
 
-  document.body.appendChild(tabSwitch);
+  navbar.appendChild(homeNav);
+  navbar.appendChild(menuNav);
+  navbar.appendChild(contactNav);
 
-  const menu = document.createElement('div');
-  menu.innerHTML = 'Menu';
+  content.appendChild(navbar);
 
-  const contact = document.createElement('div');
-  contact.innerHTML = 'Contact';
-
-  const ourStory = document.createElement('div');
-  ourStory.innerHTML = 'Our Story';
-
-  const reservation = document.createElement('div');
-  reservation.innerHTML = 'Reservation';
-
-  document.getElementById('header').appendChild(menu);
-  document.getElementById('header').appendChild(contact);
-  document.getElementById('header').appendChild(ourStory);
-  document.getElementById('header').appendChild(reservation);
-
-  menu.addEventListener('click', reset);
-  contact.addEventListener('click', contactContent);
-  ourStory.addEventListener('click', ourStoryContent);
-  reservation.addEventListener('click', reservationContent);
+  homeNav.addEventListener('click', display('homeNav'));
+  menuNav.addEventListener('click', display('menuNav'));
+  contactNav.addEventListener('click', display('contactNav'));
 }
 
-function reset() {
-  reset = document.getElementById('content');
-  while (reset.firstChild) {
-    reset.firstChild.remove();
-  }
+tab();
+homeContent();
+
+function display(destination) {
+  return function curried_funcion(e) {
+    if (destination === 'homeNav') {
+      pageLoad();
+      tab();
+      homeContent();
+    } else if (destination === 'menuNav') {
+      pageLoad();
+      tab();
+      menuContent();
+    } else if (destination === 'contactNav') {
+      pageLoad();
+      tab();
+      contactContent();
+    }
+  };
 }
-
-function menuContent() {
-  let menu = document.createElement('p');
-
-  menu.innerHTML = 'List of menu here';
-  document.getElementById('content').appendChild(menu);
-}
-
-function contactContent() {
-  let contact = document.createElement('p');
-
-  contact.innerHTML = 'Contact page here';
-  document.getElementById('content').appendChild(contact);
-}
-
-function ourStoryContent() {
-  let contact = document.createElement('p');
-
-  contact.innerHTML = 'Our Story here';
-  document.getElementById('content').appendChild(contact);
-}
-
-function reservationContent() {
-  let contact = document.createElement('p');
-
-  contact.innerHTML = 'Reserve your spots here!';
-  document.getElementById('content').appendChild(contact);
-}
-
-tabs();
