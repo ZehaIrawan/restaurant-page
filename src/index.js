@@ -4,22 +4,19 @@ import contactContent from './contact';
 import pageLoad from './pageLoad';
 
 function tab() {
-  let content = document.getElementById('content');
+  const content = document.getElementById('content');
 
-  let navbar = document.createElement('div');
+  const navbar = document.createElement('div');
   navbar.setAttribute('id', 'navbar');
 
-  let homeNav = document.createElement('div');
+  const homeNav = document.createElement('div');
   homeNav.innerHTML = 'Home';
-  navbar.setAttribute('id', 'home');
 
-  let menuNav = document.createElement('div');
+  const menuNav = document.createElement('div');
   menuNav.innerHTML = 'Menu';
-  navbar.setAttribute('id', 'menu');
 
-  let contactNav = document.createElement('div');
+  const contactNav = document.createElement('div');
   contactNav.innerHTML = 'Contact';
-  navbar.setAttribute('id', 'contact');
 
   navbar.appendChild(homeNav);
   navbar.appendChild(menuNav);
